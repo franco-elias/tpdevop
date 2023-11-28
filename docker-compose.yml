@@ -16,17 +16,18 @@ services:
   sistema-bicicleta-app:
 
     build:
-        
-      context: ./app
-
-    depends_on: 
-        - sistema-bicicleta-db 
-   
-    ports:
-      - "3000:3000"
-
+      context: .
+    depends_on:
+      - sistema-bicicleta-db
     
-
+    links:
+      - sistema-bicicleta-db
+    #environment:
+      # Variables de entorno para la conexión a la base de datos
+    ports :
+      - "3000:3000"
+    
+    
 
     
   
