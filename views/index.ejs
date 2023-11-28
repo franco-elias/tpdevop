@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+   <!-- box navbar-toggler-icon -->
+   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Navbar Example</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/disponibilidad">Disponibilidad Rodados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/anclajes">Anclajes Libres</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+   <div class="container">
+        
+        <a href="/create" class="btn btn-outline-primary mt-4"><i class='bx bx-plus bx-md'></i></a>
+        <table class="table table-bordered table-striped text-center mt-4">
+            <thead>
+                <tr class = "bg-primary text-white">
+                    <th scope="col">CUIL</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">email</th>
+                    <th scope="col">Fecha_nacimiento</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Pais_residencia</th>
+                    <th scope="col">estado</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <% results.forEach((Us)=> { %>
+                <tr>
+                    <td><%=Us.CUIL %></td>
+                    <td><%=Us.Nombre %></td>
+                    <td><%=Us.Apellido %></td>
+                    <td><%=Us.DNI %></td>
+                    <td><%=Us.email %></td>
+                    <td><%=Us.Fecha_nacimiento %></td>
+                    <td><%=Us.Direccion %></td>
+                    <td><%=Us.nombrePais %></td>
+                    <td><%=Us.estado %></td> 
+                    <td>
+                        <a href="/edit/<%= Us.CUIL %>" class="btn btn-outline-info">Editar</a>
+                        <a href="/delete/<%= Us.CUIL %>" class="btn btn-outline-danger">Borrar</a>
+                    </td> 
+                </tr>
+            <%}) %>
+            </tbody>
+
+        </table>
+    
+    </div>
+                       
+
+    <!-- Contenido de la página -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

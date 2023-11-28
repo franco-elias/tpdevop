@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+   <!-- box navbar-toggler-icon -->
+   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Navbar Example</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/disponibilidad">Disponibilidad Rodados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Anclajes Libres</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <% if(datos) { %>  
+    <div class="container mt-4">     
+        <div class="card border-secondary">  
+            <div class="card-header">Editar Registro</div>
+            <div class="card-body">
+                <form action="/update/?_method=PUT" method="POST">
+                    <!-- Agrega el campo oculto para el método override -->
+                    <input type="hidden" name="_method" value="PUT">
+
+                    <div class="mb-3">
+                        <label for="cuil" class="form-label">CUIL</label>
+                        <input type="number" class="form-control" id="cuil" name="cuil" value="<%= datos.CUIL %>" tabindex="1">
+                    </div> 
+                    <div class="mb-3">
+                        <label for="user" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="user" name="user" value="<%= datos.Nombre %>" tabindex="2">
+                    </div>   
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido" value="<%= datos.Apellido %>" tabindex="3">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dni" class="form-label">DNI</label>
+                        <input type="number" class="form-control" id="dni" name="dni" value="<%= datos.DNI %>" tabindex="4">
+                    </div>
+                    <div class="mb-3">
+                        <label for="origen" class="form-label">Origen</label>
+                        <select id="origen" name="origen" class="form-select" aria-label="Default select example" tabindex="5">
+                            <option <%= datos.Pais_residencia == '1' ? "selected" : '' %> value="1" >Extranjero</option>
+                            <option <%= datos.Pais_residencia == '2' ? "selected" : '' %> value="2">Nativo</option>                    
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">email</label>
+                        <input type="text" class="form-control" id="email" name="email" value="<%= datos.email %>" tabindex="6">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nacimiento" class="form-label">Fecha de nacimiento</label>
+                        <input type="datetime" class="form-control" id="nacimiento" name="nacimiento" value="<%= datos.Fecha_nacimiento %>" tabindex="7">
+                    </div>
+                    <div class="mb-3">
+                        <label for="direccion" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" id="direccion" name="direccion" value="<%= datos.Direccion %>" tabindex="8">
+                    </div>
+                    <div class="mb-3">
+                        <label for="localidad" class="form-label">Localidad</label>
+                        <select id="localidad" name="localidad" class="form-select" aria-label="Default select example" tabindex="9">
+                            <option <%= datos.CodLocalidad == '1001' ? "selected" : '' %> value="1001" >Capital Federal</option>
+                            <option <%= datos.CodLocalidad == '1002' ? "selected" : '' %> value="1002">Moreno</option>
+                            <option <%= datos.CodLocalidad == '1003' ? "selected" : '' %> value="1003">La Plata</option> 
+                            <option <%= datos.CodLocalidad == '1004' ? "selected" : '' %> value="1004">Quilmes</option> 
+                            <option <%= datos.CodLocalidad == '1005' ? "selected" : '' %> value="1005">Bernal</option>                     
+                        </select>
+                    </div>
+                     
+                    <div class="mb-3">
+                        <label for="paisresi" class="form-label">Pais Residencia</label>
+                        <select id="paisresi" name="paisresi" class="form-select" aria-label="Default select example" tabindex="10">
+                            <option <%= datos.Pais_residencia == '1' ? "selected" : '' %> value="1" selected>Argentina</option>
+                            <option <%= datos.Pais_residencia == '2' ? "selected" : '' %> value="2">Brasil</option>
+                            <option <%= datos.Pais_residencia == '3' ? "selected" : '' %> value="3">Canada</option>
+                            <option <%= datos.Pais_residencia == '4' ? "selected" : '' %> value="4">Uruguay</option>
+                            <option <%= datos.Pais_residencia == '5' ? "selected" : '' %> value="5">Venezuela</option>
+                            <option <%= datos.Pais_residencia == '6' ? "selected" : '' %> value="6">Colombia</option>
+                                                
+                        </select>
+                    </div> 
+
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select id="estado" name="estado" class="form-select" aria-label="Default select example" tabindex="11">
+                            <option <%= datos.estado == '1' ? "selected" : '' %> value="1" selected>Activo</option>
+                            <option <%= datos.estado == '2' ? "selected" : '' %> value="2">Inactivo</option>
+                            <option <%= datos.estado == '3' ? "selected" : '' %> value="3">Sin Validar</option>                    
+                        </select>
+                    </div> 
+                                                        
+                    <button type="submit" class="btn btn-primary" tabindex="12">Guardar</button>
+                    <a href="/" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>        
+  </div>
+  <% } %>  
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
