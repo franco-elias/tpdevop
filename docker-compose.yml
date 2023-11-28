@@ -1,5 +1,4 @@
 
-
 version: '3.8'
 
 services:
@@ -17,15 +16,19 @@ services:
   sistema-bicicleta-app:
     build:
       context: .
+      dockerfile: Dockerfile
     depends_on:
       - sistema-bicicleta-db
-    
-    links:
-      - sistema-bicicleta-db
-    #environment:
+    environment:
       # Variables de entorno para la conexión a la base de datos
-    ports :
+      DB_HOST: sistema-bicicleta-db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: qwert123
+      DB_NAME: SistemaBicicleta
+    ports:
       - "3000:3000"
+
     
     
 
