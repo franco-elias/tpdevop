@@ -21,7 +21,7 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        docker build -t your-dockerhub-username/sistema-bicicleta-app:${{ github.sha }} ./sistema-bicicleta-app
+        docker build -t felias/sistema-bicicleta-app:${{ github.sha }} ./sistema-bicicleta-app
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         docker push your-dockerhub-username/sistema-bicicleta-app:${{ github.sha }}
 
