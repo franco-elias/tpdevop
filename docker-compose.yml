@@ -16,7 +16,6 @@ services:
   sistema-bicicleta-app:
     build:
       context: .
-      dockerfile: Dockerfile
     depends_on:
       - sistema-bicicleta-db
     environment:
