@@ -1,32 +1,30 @@
 
-
 version: '3.8'
 
 services:
-
   sistema-bicicleta-db:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: qwert123
-      MYSQL_DATABASE: SistemaBicicleta
+    build:
+      context: ./db
     ports:
       - "3306:3306"
     volumes:
-      - ./datos_sql:/docker-entrypoint-initdb.d  # para cargar datos iniciales
-
+  
+      - ./db/datos_sql:/docker-entrypoint-initdb.d  # para cargar datos iniciales
+  
+  
+  
   sistema-bicicleta-app:
+
     build:
-      context: .
-    depends_on:
-      - sistema-bicicleta-db
-    
-    links:
-      - sistema-bicicleta-db
-    #environment:
-      # Variables de entorno para la conexión a la base de datos
-    ports :
+        
+      context: ./app
+
+    depends_on: 
+        - sistema-bicicleta-db 
+   
+    ports:
       - "3000:3000"
-    
+
     
 
 

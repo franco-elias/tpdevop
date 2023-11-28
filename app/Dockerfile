@@ -1,5 +1,4 @@
-FROM node:20.10-slim
-
+FROM node:lts-slim
 WORKDIR /myapp
 
 COPY package.json .
